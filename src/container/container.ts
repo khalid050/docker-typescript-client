@@ -3,10 +3,16 @@ import * as C from "./containerT";
 import { generateQueryParams, getErrorMessage } from "../util";
 
 export const Container: C.Container = {
-  async createContainer({ baseImage, defaultCommand = [], options = {} }) {
+  async createContainer({
+    containerName,
+    baseImage,
+    platform = "",
+    defaultCommand = [],
+    options = {},
+  }) {
     try {
       const { data } = await requestDaemon<C.Response["ContainerCreate"]>({
-        path: "containers/create",
+        path: `containers/create?name=${containerName}&platform=${platform}`,
         method: "post",
         data: {
           Image: baseImage,

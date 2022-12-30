@@ -2,7 +2,7 @@ export const generateQueryParams = (options = {}) => {
   return (
     "?" +
     Object.entries(options)
-      .map(([key, value]) => `${key}=${value}`)
+      .map(([key, value]) => `${key}=${value === "undefined" ? "" : value}`)
       .join("&")
   );
 };
