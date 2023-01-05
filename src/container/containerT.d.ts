@@ -96,44 +96,24 @@ type ContainerPrune = (
 ) => Res<"ContainerPrune">;
 
 export type Container = {
-  createContainer: CreateContainer;
-  listContainers: ListContainers;
-  deleteContainer: DeleteContainer;
-  killContainer: KillContainer;
-  startContainer: StartContainer;
-  stopContainer: StopContainer;
-  inspectContainer: InspectContainer;
-  containerLogs: ContainerLogs;
-  containerFilesystemChanges: ContainerFilesystemChanges;
-  pauseContainer: PauseContainer;
-  unpauseContainer: UnpauseContainer;
-  restartContainer: RestartContainer;
-  renameContainer: RenameContainer;
-  containerTop: ContainerTop;
+  create: CreateContainer;
+  list: ListContainers;
+  delete: DeleteContainer;
+  kill: KillContainer;
+  start: StartContainer;
+  stop: StopContainer;
+  inspect: InspectContainer;
+  logs: ContainerLogs;
+  filesystemChanges: ContainerFilesystemChanges;
+  pause: PauseContainer;
+  unpause: UnpauseContainer;
+  restart: RestartContainer;
+  rename: RenameContainer;
+  top: ContainerTop;
   attachToContainerWebsocket: ContainerAttachWebsocket;
   waitForContainer: WaitForContainer;
   deleteStoppedContainers: ContainerPrune;
 };
-
-// export type Response = {
-//   ContainerCreate: SuccessResponse<"ContainerCreate">;
-//   ContainerKill: SuccessResponse<"ContainerKill">;
-//   ContainerStart: SuccessResponse<"ContainerStart">;
-//   ContainerStop: SuccessResponse<"ContainerStop">;
-//   ContainerDelete: SuccessResponse<"ContainerDelete">;
-//   ContainerRestart: SuccessResponse<"ContainerRestart">;
-//   ContainerList: SuccessResponse<"ContainerList">;
-//   ContainerInspect: SuccessResponse<"ContainerInspect">;
-//   ContainerLogs: SuccessResponse<"ContainerLogs">;
-//   ContainerChanges: SuccessResponse<"ContainerChanges">;
-//   ContainerPause: SuccessResponse<"ContainerPause">;
-//   ContainerUnpause: SuccessResponse<"ContainerUnpause">;
-//   ContainerRename: SuccessResponse<"ContainerRename">;
-//   ContainerTop: SuccessResponse<"ContainerTop">;
-//   ContainerWait: SuccessResponse<"ContainerWait">;
-//   ContainerPrune: SuccessResponse<"ContainerPrune">;
-//   ContainerAttachWebsocket: SuccessResponse<"ContainerAttachWebsocket">;
-// };
 
 export type Response = {
   [K in Actions]: SuccessResponse<K>
