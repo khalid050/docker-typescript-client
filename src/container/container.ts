@@ -1,6 +1,6 @@
 import { requestDaemon } from "../http";
 import * as C from "./containerT";
-import { generateQueryParams, getErrorMessage } from "../util";
+import { getErrorMessage } from "../util";
 
 export const Container: C.Container = {
   async create({
@@ -29,10 +29,9 @@ export const Container: C.Container = {
   async kill(containerIdOrName, options = {}) {
     try {
       await requestDaemon<C.Response["ContainerKill"]>({
-        path: `containers/${containerIdOrName}/kill${generateQueryParams(
-          options
-        )}}`,
+        path: `containers/${containerIdOrName}/kill`,
         method: "post",
+        queryParams: options,
       });
 
       return { message: `Killed container with id ${containerIdOrName}` };
@@ -44,10 +43,9 @@ export const Container: C.Container = {
   async start(containerIdOrName, options = {}) {
     try {
       await requestDaemon<C.Response["ContainerStart"]>({
-        path: `containers/${containerIdOrName}/start${generateQueryParams(
-          options
-        )}`,
+        path: `containers/${containerIdOrName}/start`,
         method: "post",
+        queryParams: options,
       });
 
       return { message: `Stopped containter with id ${containerIdOrName}` };
@@ -59,10 +57,9 @@ export const Container: C.Container = {
   async stop(containerIdOrName, options = {}) {
     try {
       await requestDaemon<C.Response["ContainerStop"]>({
-        path: `containers/${containerIdOrName}/stop${generateQueryParams(
-          options
-        )}`,
+        path: `containers/${containerIdOrName}/stop`,
         method: "post",
+        queryParams: options,
       });
 
       return { message: `Stopped containter with id ${containerIdOrName}` };
@@ -87,8 +84,9 @@ export const Container: C.Container = {
   async list(options = {}) {
     try {
       const { data } = await requestDaemon<C.Response["ContainerList"]>({
-        path: `containers/json${generateQueryParams(options)}`,
+        path: "containers/json",
         method: "get",
+        queryParams: options,
       });
 
       return data;
@@ -100,10 +98,9 @@ export const Container: C.Container = {
   async inspect(containerIdOrName, options = {}) {
     try {
       const { data } = await requestDaemon<C.Response["ContainerInspect"]>({
-        path: `containers/${containerIdOrName}/json${generateQueryParams(
-          options
-        )}`,
+        path: `containers/${containerIdOrName}/json`,
         method: "get",
+        queryParams: options,
       });
 
       return data;
@@ -115,10 +112,9 @@ export const Container: C.Container = {
   async logs(containerIdOrName, options = {}) {
     try {
       const { data } = await requestDaemon<C.Response["ContainerLogs"]>({
-        path: `containers/${containerIdOrName}/logs${generateQueryParams(
-          options
-        )}`,
+        path: `containers/${containerIdOrName}/logs`,
         method: "get",
+        queryParams: options,
       });
 
       return { message: data };
@@ -169,10 +165,9 @@ export const Container: C.Container = {
   async restart(containerIdOrName, options = {}) {
     try {
       await requestDaemon<C.Response["ContainerRestart"]>({
-        path: `containers/${containerIdOrName}/restart${generateQueryParams(
-          options
-        )}`,
+        path: `containers/${containerIdOrName}/restart`,
         method: "post",
+        queryParams: options,
       });
 
       return { message: `Restarted container with id ${containerIdOrName}` };
@@ -199,10 +194,9 @@ export const Container: C.Container = {
   async top(containerIdOrName, options = {}) {
     try {
       const { data } = await requestDaemon<C.Response["ContainerTop"]>({
-        path: `containers/${containerIdOrName}/top${generateQueryParams(
-          options
-        )}`,
+        path: `containers/${containerIdOrName}/top`,
         method: "get",
+        queryParams: options,
       });
 
       return data;
@@ -214,10 +208,9 @@ export const Container: C.Container = {
   async attachToContainerWebsocket(containerIdOrName, options = {}) {
     try {
       await requestDaemon<C.Response["ContainerAttachWebsocket"]>({
-        path: `containers/${containerIdOrName}/attach/ws${generateQueryParams(
-          options
-        )}`,
+        path: `containers/${containerIdOrName}/attach/ws`,
         method: "get",
+        queryParams: options,
       });
 
       return { message: `Attached to container: ${containerIdOrName}` };
@@ -229,10 +222,9 @@ export const Container: C.Container = {
   async waitForContainer(containerIdOrName, options = {}) {
     try {
       const { data } = await requestDaemon<C.Response["ContainerWait"]>({
-        path: `containers/${containerIdOrName}/wait${generateQueryParams(
-          options
-        )}`,
+        path: `containers/${containerIdOrName}/wait`,
         method: "get",
+        queryParams: options,
       });
 
       return data;
@@ -244,8 +236,9 @@ export const Container: C.Container = {
   async deleteStoppedContainers(options = {}) {
     try {
       const { data } = await requestDaemon<C.Response["ContainerDelete"]>({
-        path: `containers/prune${generateQueryParams(options)}`,
+        path: "containers/prune",
         method: "post",
+        queryParams: options,
       });
 
       return data;

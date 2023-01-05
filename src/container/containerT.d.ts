@@ -51,7 +51,7 @@ type InspectContainer = (
 ) => Res<"ContainerInspect">;
 
 type ListContainers = (
-  options: QueryParams<"ContainerList">
+  options?: QueryParams<"ContainerList">
 ) => Res<"ContainerList">;
 
 type PauseContainer = (
