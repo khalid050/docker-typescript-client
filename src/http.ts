@@ -1,4 +1,5 @@
 import axios, { AxiosPromise } from "axios";
+import { generateQueryParams } from "./util";
 
 axios.defaults.baseURL = "http://localhost/v1.41/";
 axios.defaults.socketPath = "/var/run/docker.sock";
@@ -9,12 +10,17 @@ type Http = {
   method: "get" | "post" | "delete" | "head";
   path: string;
   data?: { [key: string]: any };
+  headers?: { [key: string]: any };
+  queryParams?: { [key: string]: any };
 };
 
 export const requestDaemon = async <T>({
   method,
   data,
   path,
+  headers,
+  queryParams,
 }: Http): AxiosPromise<T> => {
-  return axios({ method, data, url: path });
+  path = `${path}${generateQueryParams(queryParams)}`;
+  return axios({ method, data, url: path, headers });
 };
