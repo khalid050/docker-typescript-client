@@ -1,16 +1,12 @@
 import Container from "./container";
+import Image from "./image";
 
 async function main() {
-  const container = await Container.createContainer({
-    baseImage: "alpine:latest",
-    containerName: "myAlpinecoNTAINERAA",
-    defaultCommand: ["echo", "hi"],
-  });
-  console.log(container);
+  const builtImage = await Image.build();
 }
 
 (async function () {
   await main();
 })();
 
-export { Container };
+export { Container, Image };

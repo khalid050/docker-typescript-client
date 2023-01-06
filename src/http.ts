@@ -1,7 +1,7 @@
 import axios, { AxiosPromise } from "axios";
 import { generateQueryParams } from "./util";
 
-axios.defaults.baseURL = "http://localhost/v1.41/";
+// axios.defaults.baseURL = "http://localhost/v1.41/";
 axios.defaults.socketPath = "/var/run/docker.sock";
 axios.defaults.headers.post = { "Content-Type": "application/json" };
 axios.defaults.responseType = "json";

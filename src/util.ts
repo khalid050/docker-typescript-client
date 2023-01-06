@@ -1,4 +1,10 @@
-export const generateQueryParams = (options = {}) => {
+export const generateQueryParams = (
+  options: { [key: string]: string } | undefined
+) => {
+  if (!options || !Object.values(options).length) {
+    return "";
+  }
+
   return (
     "?" +
     Object.entries(options)
