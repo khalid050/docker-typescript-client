@@ -18,13 +18,16 @@ type Build = (
 ) => Res<"ImageBuild">;
 
 type Inspect = (imageIdOrName: string) => Res<"ImageInspect">;
-type Remove = (imageIdOrName: string) => Res<'ImagePrune'>
+type Remove = (
+  imageIdOrName: string,
+  options?: QueryParams<"ImagePrune">
+) => Res<"ImagePrune">;
 
 export type Image = {
   list: List;
   build: Build;
   inspect: Inspect;
-  remove: Remove
+  remove: Remove;
 };
 
 export type Response = {
