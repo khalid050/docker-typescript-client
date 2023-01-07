@@ -71,10 +71,75 @@ export const Image: I.Image = {
   },
   async remove(imageIdOrName, options = {}) {
     try {
-      const { data } = await requestDaemon<I.Response["ImagePrune"]>({
+      const { data } = await requestDaemon<I.Response["ImageDelete"]>({
         path: `/images/${imageIdOrName}`,
         method: "delete",
-        queryParams: options
+        queryParams: options,
+      });
+
+      return data;
+    } catch (error) {
+      throw new Error(getErrorMessage(error));
+    }
+  },
+  async tag(imageIdOrName, options = {}) {
+    try {
+      const { data } = await requestDaemon<I.Response["ImageTag"]>({
+        path: `/images/${imageIdOrName}`,
+        method: "post",
+        queryParams: options,
+      });
+
+      return data;
+    } catch (error) {
+      throw new Error(getErrorMessage(error));
+    }
+  },
+
+  async history(imageIdOrName) {
+    try {
+      const { data } = await requestDaemon<I.Response["ImageHistory"]>({
+        path: `/images/${imageIdOrName}/history`,
+        method: "get",
+      });
+
+      return data;
+    } catch (error) {
+      throw new Error(getErrorMessage(error));
+    }
+  },
+  async deleteBuilderCache(options = {}) {
+    try {
+      const { data } = await requestDaemon<I.Response["BuildPrune"]>({
+        path: `/build/prune`,
+        method: "post",
+        queryParams: options,
+      });
+
+      return data;
+    } catch (error) {
+      throw new Error(getErrorMessage(error));
+    }
+  },
+  async search(term, options = {}) {
+    try {
+      const { data } = await requestDaemon<I.Response["ImageSearch"]>({
+        path: `/images/search`,
+        method: "get",
+        queryParams: { term, ...options },
+      });
+
+      return data;
+    } catch (error) {
+      throw new Error(getErrorMessage(error));
+    }
+  },
+  async deleteUnusedImages(options = {}) {
+    try {
+      const { data } = await requestDaemon<I.Response["ImagePrune"]>({
+        path: '/images/prune',
+        method: "get",
+        queryParams: options,
       });
 
       return data;
