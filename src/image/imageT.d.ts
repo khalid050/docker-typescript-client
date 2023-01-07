@@ -12,11 +12,17 @@ type Res<T extends Actions> = Promise<
 >;
 
 type List = (props?: QueryParams<"ImageList">) => Res<"ImageList">;
-type Build = (props?: QueryParams<"ImageBuild">) => Res<"ImageBuild">;
+type Build = (
+  tarArchivePath: string,
+  options: QueryParams<"ImageBuild">
+) => Res<"ImageBuild">;
+
+type Inspect = (imageIdOrName: string) => Res<"ImageInspect">;
 
 export type Image = {
-  list: ListImages;
-  build: BuildImage;
+  list: List;
+  build: Build;
+  inspect: Inspect;
 };
 
 export type Response = {
