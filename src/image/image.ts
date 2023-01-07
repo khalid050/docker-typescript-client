@@ -23,7 +23,7 @@ export const Image: I.Image = {
 
   async build(tarArchivePath, options = {}) {
     return new Promise((resolve, reject) => {
-      const outputPath = `${process.cwd()}/src/docker.tar`;
+      const outputPath = `${process.cwd()}/src/tmp/docker.tar`;
       tar.pack(tarArchivePath).pipe(fs.createWriteStream(outputPath));
       const archive = fs.readFileSync(outputPath);
 
