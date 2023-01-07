@@ -18,11 +18,13 @@ type Build = (
 ) => Res<"ImageBuild">;
 
 type Inspect = (imageIdOrName: string) => Res<"ImageInspect">;
+type Remove = (imageIdOrName: string) => Res<'ImagePrune'>
 
 export type Image = {
   list: List;
   build: Build;
   inspect: Inspect;
+  remove: Remove
 };
 
 export type Response = {

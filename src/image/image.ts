@@ -69,4 +69,16 @@ export const Image: I.Image = {
       throw new Error(getErrorMessage(error));
     }
   },
+  async remove(imageIdOrName) {
+    try {
+      const { data } = await requestDaemon<I.Response["ImagePrune"]>({
+        path: `/images/${imageIdOrName}`,
+        method: "delete",
+      });
+
+      return data;
+    } catch (error) {
+      throw new Error(getErrorMessage(error));
+    }
+  },
 };

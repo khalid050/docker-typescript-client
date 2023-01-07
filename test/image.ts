@@ -1,8 +1,9 @@
 import { assert } from "node:console";
-import test from "node:test";
+import test, { after } from "node:test";
 import { Image } from "../src";
 
 test("Should build an Ubuntu Image", async () => {
+  after(async () => await Image.remove(imageTag));
   const imageTag = "myubuntuimage";
   await Image.build(`${process.cwd()}/test/archive`, {
     t: imageTag,
