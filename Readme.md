@@ -12,7 +12,7 @@ const { Container, Image } = new Docker();
 const { Container, Image } = new Docker({ url: my_url, socketPath: my_socket_path });
 
 const imageTag = "myubuntuimage";
-await Image.build(`${process.cwd()}/path/to/tar/arhive`, {
+await Image.build(`${process.cwd()}/path/to/tar/archive`, {
   t: imageTag,
 });
 
