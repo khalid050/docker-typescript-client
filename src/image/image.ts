@@ -43,6 +43,7 @@ export const Image: I.Image = {
         res.on("data", (chunk) => {
           data += chunk;
         });
+        
         res.on("end", () => {
           resolve(data);
         });

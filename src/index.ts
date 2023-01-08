@@ -1,18 +1,31 @@
 import Container from "./container";
+import { Container as C } from "./container/containerT";
+import { Image as I } from "./image/imageT";
 import Image from "./image";
-async function main() {
-  // const imageTag = "myubuntuimage";
-  // await Image.build(`${process.cwd()}/test/archive`, {
-  //   t: imageTag,
-  // });
+import axios from "axios";
 
-  // const myubuntuimage = await Image.inspect(imageTag);
-  // const res = await Image.remove(imageTag);
-  // console.log({ res });
+const DockerDefaults = {
+  url: "http://localhost/v1.41/",
+  socketPath: "/var/run/docker.sock",
+};
+
+class Docker {
+  url?: string;
+  socketPath?: string;
+  Container: C;
+  Image: I;
+
+  constructor({ url, socketPath }: { url?: string; socketPath?: string } = {}) {
+    this.url = url || DockerDefaults.url;
+    this.socketPath = socketPath || DockerDefaults.socketPath;
+    this.Container = Container;
+    this.Image = Image;
+    axios.defaults.baseURL = this.url;
+    axios.defaults.socketPath = this.socketPath;
+  }
 }
 
-(async function () {
-  await main();
-})();
+//testing
+(async function () {})();
 
-export { Container, Image };
+export { Docker, Container, Image };
