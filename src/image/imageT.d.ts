@@ -54,7 +54,3 @@ export type Image = {
   search: Search;
   deleteUnusedImages: DeleteUnusedImages;
 };
-
-export type Response = {
-  [K in Actions]: SuccessResponse<K>;
-};

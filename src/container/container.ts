@@ -1,8 +1,9 @@
 import { requestDaemon } from "../http";
-import * as C from "./containerT";
+import { Container as C } from "./containerT";
 import { getErrorMessage } from "../util";
+import { Response } from "../../response";
 
-export const Container: C.Container = {
+export const Container: C = {
   async create({
     containerName,
     baseImage,
@@ -11,7 +12,7 @@ export const Container: C.Container = {
     options = {},
   }) {
     try {
-      const { data } = await requestDaemon<C.Response["ContainerCreate"]>({
+      const { data } = await requestDaemon<Response["ContainerCreate"]>({
         path: `containers/create?name=${containerName}&platform=${platform}`,
         method: "post",
         data: {
@@ -28,7 +29,7 @@ export const Container: C.Container = {
 
   async kill(containerIdOrName, options = {}) {
     try {
-      await requestDaemon<C.Response["ContainerKill"]>({
+      await requestDaemon<Response["ContainerKill"]>({
         path: `containers/${containerIdOrName}/kill`,
         method: "post",
         queryParams: options,
@@ -42,7 +43,7 @@ export const Container: C.Container = {
 
   async start(containerIdOrName, options = {}) {
     try {
-      await requestDaemon<C.Response["ContainerStart"]>({
+      await requestDaemon<Response["ContainerStart"]>({
         path: `containers/${containerIdOrName}/start`,
         method: "post",
         queryParams: options,
@@ -56,7 +57,7 @@ export const Container: C.Container = {
 
   async stop(containerIdOrName, options = {}) {
     try {
-      await requestDaemon<C.Response["ContainerStop"]>({
+      await requestDaemon<Response["ContainerStop"]>({
         path: `containers/${containerIdOrName}/stop`,
         method: "post",
         queryParams: options,
@@ -70,7 +71,7 @@ export const Container: C.Container = {
 
   async delete(containerIdOrName) {
     try {
-      await requestDaemon<C.Response["ContainerDelete"]>({
+      await requestDaemon<Response["ContainerDelete"]>({
         path: `containers/${containerIdOrName}`,
         method: "delete",
       });
@@ -83,7 +84,7 @@ export const Container: C.Container = {
 
   async list(options = {}) {
     try {
-      const { data } = await requestDaemon<C.Response["ContainerList"]>({
+      const { data } = await requestDaemon<Response["ContainerList"]>({
         path: "containers/json",
         method: "get",
         queryParams: options,
@@ -97,7 +98,7 @@ export const Container: C.Container = {
 
   async inspect(containerIdOrName, options = {}) {
     try {
-      const { data } = await requestDaemon<C.Response["ContainerInspect"]>({
+      const { data } = await requestDaemon<Response["ContainerInspect"]>({
         path: `containers/${containerIdOrName}/json`,
         method: "get",
         queryParams: options,
@@ -111,7 +112,7 @@ export const Container: C.Container = {
 
   async logs(containerIdOrName, options = {}) {
     try {
-      const { data } = await requestDaemon<C.Response["ContainerLogs"]>({
+      const { data } = await requestDaemon<Response["ContainerLogs"]>({
         path: `containers/${containerIdOrName}/logs`,
         method: "get",
         queryParams: options,
@@ -125,7 +126,7 @@ export const Container: C.Container = {
 
   async filesystemChanges(containerIdOrName) {
     try {
-      const { data } = await requestDaemon<C.Response["ContainerChanges"]>({
+      const { data } = await requestDaemon<Response["ContainerChanges"]>({
         path: `containers/${containerIdOrName}/changes`,
         method: "get",
       });
@@ -138,7 +139,7 @@ export const Container: C.Container = {
 
   async pause(containerIdOrName) {
     try {
-      await requestDaemon<C.Response["ContainerPause"]>({
+      await requestDaemon<Response["ContainerPause"]>({
         path: `containers/${containerIdOrName}/pause`,
         method: "post",
       });
@@ -151,7 +152,7 @@ export const Container: C.Container = {
 
   async unpause(containerIdOrName) {
     try {
-      await requestDaemon<C.Response["ContainerUnpause"]>({
+      await requestDaemon<Response["ContainerUnpause"]>({
         path: `containers/${containerIdOrName}/unpause`,
         method: "post",
       });
@@ -164,7 +165,7 @@ export const Container: C.Container = {
 
   async restart(containerIdOrName, options = {}) {
     try {
-      await requestDaemon<C.Response["ContainerRestart"]>({
+      await requestDaemon<Response["ContainerRestart"]>({
         path: `containers/${containerIdOrName}/restart`,
         method: "post",
         queryParams: options,
@@ -178,7 +179,7 @@ export const Container: C.Container = {
 
   async rename(containerIdOrName, newContainerName) {
     try {
-      await requestDaemon<C.Response["ContainerRename"]>({
+      await requestDaemon<Response["ContainerRename"]>({
         path: `containers/${containerIdOrName}/rename?name=${newContainerName}`,
         method: "post",
       });
@@ -193,7 +194,7 @@ export const Container: C.Container = {
 
   async top(containerIdOrName, options = {}) {
     try {
-      const { data } = await requestDaemon<C.Response["ContainerTop"]>({
+      const { data } = await requestDaemon<Response["ContainerTop"]>({
         path: `containers/${containerIdOrName}/top`,
         method: "get",
         queryParams: options,
@@ -207,7 +208,7 @@ export const Container: C.Container = {
 
   async attachToContainerWebsocket(containerIdOrName, options = {}) {
     try {
-      await requestDaemon<C.Response["ContainerAttachWebsocket"]>({
+      await requestDaemon<Response["ContainerAttachWebsocket"]>({
         path: `containers/${containerIdOrName}/attach/ws`,
         method: "get",
         queryParams: options,
@@ -221,7 +222,7 @@ export const Container: C.Container = {
 
   async waitForContainer(containerIdOrName, options = {}) {
     try {
-      const { data } = await requestDaemon<C.Response["ContainerWait"]>({
+      const { data } = await requestDaemon<Response["ContainerWait"]>({
         path: `containers/${containerIdOrName}/wait`,
         method: "get",
         queryParams: options,
@@ -235,7 +236,7 @@ export const Container: C.Container = {
 
   async deleteStoppedContainers(options = {}) {
     try {
-      const { data } = await requestDaemon<C.Response["ContainerDelete"]>({
+      const { data } = await requestDaemon<Response["ContainerDelete"]>({
         path: "containers/prune",
         method: "post",
         queryParams: options,

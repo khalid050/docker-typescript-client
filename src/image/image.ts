@@ -1,15 +1,16 @@
 import { generateQueryParams, getErrorMessage } from "../util";
 import { requestDaemon } from "../http";
-import * as I from "./imageT";
+import { Image as I } from "./imageT";
+import { Response } from "response";
 
 import fs from "fs";
 import tar from "tar-fs";
 import http from "http";
 
-export const Image: I.Image = {
+export const Image: I = {
   async list(options = {}) {
     try {
-      const { data } = await requestDaemon<I.Response["ImageList"]>({
+      const { data } = await requestDaemon<Response["ImageList"]>({
         path: `/images/json`,
         method: "get",
         queryParams: options,
@@ -43,7 +44,7 @@ export const Image: I.Image = {
         res.on("data", (chunk) => {
           data += chunk;
         });
-        
+
         res.on("end", () => {
           resolve(data);
         });
@@ -60,7 +61,7 @@ export const Image: I.Image = {
 
   async inspect(imageIdOrName) {
     try {
-      const { data } = await requestDaemon<I.Response["ImageInspect"]>({
+      const { data } = await requestDaemon<Response["ImageInspect"]>({
         path: `/images/${imageIdOrName}/json`,
         method: "get",
       });
@@ -72,7 +73,7 @@ export const Image: I.Image = {
   },
   async remove(imageIdOrName, options = {}) {
     try {
-      const { data } = await requestDaemon<I.Response["ImageDelete"]>({
+      const { data } = await requestDaemon<Response["ImageDelete"]>({
         path: `/images/${imageIdOrName}`,
         method: "delete",
         queryParams: options,
@@ -85,7 +86,7 @@ export const Image: I.Image = {
   },
   async tag(imageIdOrName, options = {}) {
     try {
-      const { data } = await requestDaemon<I.Response["ImageTag"]>({
+      const { data } = await requestDaemon<Response["ImageTag"]>({
         path: `/images/${imageIdOrName}`,
         method: "post",
         queryParams: options,
@@ -99,7 +100,7 @@ export const Image: I.Image = {
 
   async history(imageIdOrName) {
     try {
-      const { data } = await requestDaemon<I.Response["ImageHistory"]>({
+      const { data } = await requestDaemon<Response["ImageHistory"]>({
         path: `/images/${imageIdOrName}/history`,
         method: "get",
       });
@@ -111,7 +112,7 @@ export const Image: I.Image = {
   },
   async deleteBuilderCache(options = {}) {
     try {
-      const { data } = await requestDaemon<I.Response["BuildPrune"]>({
+      const { data } = await requestDaemon<Response["BuildPrune"]>({
         path: `/build/prune`,
         method: "post",
         queryParams: options,
@@ -124,7 +125,7 @@ export const Image: I.Image = {
   },
   async search(term, options = {}) {
     try {
-      const { data } = await requestDaemon<I.Response["ImageSearch"]>({
+      const { data } = await requestDaemon<Response["ImageSearch"]>({
         path: `/images/search`,
         method: "get",
         queryParams: { term, ...options },
@@ -137,8 +138,8 @@ export const Image: I.Image = {
   },
   async deleteUnusedImages(options = {}) {
     try {
-      const { data } = await requestDaemon<I.Response["ImagePrune"]>({
-        path: '/images/prune',
+      const { data } = await requestDaemon<Response["ImagePrune"]>({
+        path: "/images/prune",
         method: "get",
         queryParams: options,
       });

@@ -16,9 +16,9 @@ type Res<T extends Actions> = Promise<
 type CreateContainer = (props: {
   containerName?: string;
   defaultCommand: string[];
-  platform?: string
+  platform?: string;
   baseImage?: string;
-  options?: Omit<RequestOptions<"ContainerCreate">, "Image" | "Cmd">
+  options?: Omit<RequestOptions<"ContainerCreate">, "Image" | "Cmd">;
 }) => Res<"ContainerCreate">;
 
 type KillContainer = (
@@ -114,7 +114,3 @@ export type Container = {
   waitForContainer: WaitForContainer;
   deleteStoppedContainers: ContainerPrune;
 };
-
-export type Response = {
-  [K in Actions]: SuccessResponse<K>
-}
