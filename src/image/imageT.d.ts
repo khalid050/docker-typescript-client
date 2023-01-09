@@ -3,45 +3,40 @@ import {
   Actions,
   QueryParams,
   RequestOptions,
+  DaemonResponse,
 } from "../../response";
 
-type Res<T extends Actions> = Promise<
-  SuccessResponse<T> extends string | number
-    ? { message: string | number }
-    : SuccessResponse<T>
->;
-
-type List = (props?: QueryParams<"ImageList">) => Res<"ImageList">;
+type List = (props?: QueryParams<"ImageList">) => DaemonResponse<"ImageList">;
 
 type Build = (
   tarArchivePath: string,
   options: QueryParams<"ImageBuild">
-) => Res<"ImageBuild">;
+) => DaemonResponse<"ImageBuild">;
 
-type Inspect = (imageIdOrName: string) => Res<"ImageInspect">;
+type Inspect = (imageIdOrName: string) => DaemonResponse<"ImageInspect">;
 
 type Remove = (
   imageIdOrName: string,
   options?: QueryParams<"ImageDelete">
-) => Res<"ImageDelete">;
+) => DaemonResponse<"ImageDelete">;
 
 type Tag = (
   imageIdOrName: string,
   options: QueryParams<"ImageTag">
-) => Res<"ImageTag">;
+) => DaemonResponse<"ImageTag">;
 
-type History = (imageIdOrName: string) => Res<"ImageHistory">;
+type History = (imageIdOrName: string) => DaemonResponse<"ImageHistory">;
 
 type DeleteBuilderCache = (options?: QueryParams<"BuildPrune">) => void;
 
 type Search = (
   term: string,
   options?: Omit<QueryParams<"ImageSearch">, "term">
-) => Res<"ImageSearch">;
+) => DaemonResponse<"ImageSearch">;
 
 type DeleteUnusedImages = (
   options?: QueryParams<"ImagePrune">
-) => Res<"ImagePrune">;
+) => DaemonResponse<"ImagePrune">;
 
 export type Image = {
   list: List;

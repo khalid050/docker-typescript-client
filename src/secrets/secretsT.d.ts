@@ -5,25 +5,29 @@ import {
   RequestOptions,
 } from "../../response";
 
-type Res<T extends Actions> = Promise<
+type DaemonResponse<T extends Actions> = Promise<
   SuccessResponse<T> extends string | number
     ? { message: string | number }
     : SuccessResponse<T>
 >;
 
-type List = (options: QueryParams<"SecretList">) => Res<"SecretList">;
+type List = (
+  options: QueryParams<"SecretList">
+) => DaemonResponse<"SecretList">;
 
-type Create = (data: RequestOptions<"SecretCreate">) => Res<"SecretCreate">;
+type Create = (
+  data: RequestOptions<"SecretCreate">
+) => DaemonResponse<"SecretCreate">;
 
-type Inspect = (id: string) => Res<"SecretInspect">;
+type Inspect = (id: string) => DaemonResponse<"SecretInspect">;
 
-type Delete = (id: string) => Res<"SecretDelete">;
+type Delete = (id: string) => DaemonResponse<"SecretDelete">;
 
 type Update = (
   id: string,
   version: number,
   options: RequestOptions<"SecretCreate">
-) => Res<"SecretCreate">;
+) => DaemonResponse<"SecretCreate">;
 
 export type Secrets = {
   list: List;

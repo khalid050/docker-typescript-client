@@ -42,3 +42,9 @@ export type RequestOptions<T extends Actions> = O<T> extends {
 export type Response = {
   [K in Actions]: SuccessResponse<K>;
 };
+
+export type DaemonResponse<T extends Actions> = Promise<
+  SuccessResponse<T> extends string | number
+    ? { data: string | number }
+    : SuccessResponse<T>
+>;

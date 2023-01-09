@@ -21,6 +21,7 @@ export const Container: C = {
           ...options,
         },
       });
+
       return data;
     } catch (error: any) {
       throw new Error(getErrorMessage(error));
@@ -29,13 +30,11 @@ export const Container: C = {
 
   async kill(containerIdOrName, options = {}) {
     try {
-      await requestDaemon<Response["ContainerKill"]>({
+      return await requestDaemon<Response["ContainerKill"]>({
         path: `containers/${containerIdOrName}/kill`,
         method: "post",
         queryParams: options,
       });
-
-      return { message: `Killed container with id ${containerIdOrName}` };
     } catch (error: any) {
       throw new Error(getErrorMessage(error));
     }
@@ -43,13 +42,11 @@ export const Container: C = {
 
   async start(containerIdOrName, options = {}) {
     try {
-      await requestDaemon<Response["ContainerStart"]>({
+      return await requestDaemon<Response["ContainerStart"]>({
         path: `containers/${containerIdOrName}/start`,
         method: "post",
         queryParams: options,
       });
-
-      return { message: `Stopped containter with id ${containerIdOrName}` };
     } catch (error: any) {
       throw new Error(getErrorMessage(error));
     }
@@ -57,13 +54,11 @@ export const Container: C = {
 
   async stop(containerIdOrName, options = {}) {
     try {
-      await requestDaemon<Response["ContainerStop"]>({
+      return await requestDaemon<Response["ContainerStop"]>({
         path: `containers/${containerIdOrName}/stop`,
         method: "post",
         queryParams: options,
       });
-
-      return { message: `Stopped containter with id ${containerIdOrName}` };
     } catch (error: any) {
       throw new Error(getErrorMessage(error));
     }
@@ -71,12 +66,10 @@ export const Container: C = {
 
   async delete(containerIdOrName) {
     try {
-      await requestDaemon<Response["ContainerDelete"]>({
+      return await requestDaemon<Response["ContainerDelete"]>({
         path: `containers/${containerIdOrName}`,
         method: "delete",
       });
-
-      return { message: `Deleted container with id ${containerIdOrName}` };
     } catch (error: any) {
       throw new Error(getErrorMessage(error));
     }
@@ -118,7 +111,7 @@ export const Container: C = {
         queryParams: options,
       });
 
-      return { message: data };
+      return { data };
     } catch (error: any) {
       throw new Error(getErrorMessage(error));
     }
@@ -139,12 +132,10 @@ export const Container: C = {
 
   async pause(containerIdOrName) {
     try {
-      await requestDaemon<Response["ContainerPause"]>({
+      return await requestDaemon<Response["ContainerPause"]>({
         path: `containers/${containerIdOrName}/pause`,
         method: "post",
       });
-
-      return { message: `Paused container with id ${containerIdOrName}` };
     } catch (error: any) {
       throw new Error(getErrorMessage(error));
     }
@@ -152,12 +143,10 @@ export const Container: C = {
 
   async unpause(containerIdOrName) {
     try {
-      await requestDaemon<Response["ContainerUnpause"]>({
+      return await requestDaemon<Response["ContainerUnpause"]>({
         path: `containers/${containerIdOrName}/unpause`,
         method: "post",
       });
-
-      return { message: `Unpaused container with id ${containerIdOrName}` };
     } catch (error: any) {
       throw new Error(getErrorMessage(error));
     }
@@ -165,13 +154,11 @@ export const Container: C = {
 
   async restart(containerIdOrName, options = {}) {
     try {
-      await requestDaemon<Response["ContainerRestart"]>({
+      return await requestDaemon<Response["ContainerRestart"]>({
         path: `containers/${containerIdOrName}/restart`,
         method: "post",
         queryParams: options,
       });
-
-      return { message: `Restarted container with id ${containerIdOrName}` };
     } catch (error: any) {
       throw new Error(getErrorMessage(error));
     }
@@ -179,14 +166,10 @@ export const Container: C = {
 
   async rename(containerIdOrName, newContainerName) {
     try {
-      await requestDaemon<Response["ContainerRename"]>({
+      return await requestDaemon<Response["ContainerRename"]>({
         path: `containers/${containerIdOrName}/rename?name=${newContainerName}`,
         method: "post",
       });
-
-      return {
-        message: `Container with id ${containerIdOrName} renamed to ${newContainerName}`,
-      };
     } catch (error: any) {
       throw new Error(getErrorMessage(error));
     }
@@ -208,13 +191,11 @@ export const Container: C = {
 
   async attachToContainerWebsocket(containerIdOrName, options = {}) {
     try {
-      await requestDaemon<Response["ContainerAttachWebsocket"]>({
+      return await requestDaemon<Response["ContainerAttachWebsocket"]>({
         path: `containers/${containerIdOrName}/attach/ws`,
         method: "get",
         queryParams: options,
       });
-
-      return { message: `Attached to container: ${containerIdOrName}` };
     } catch (error: any) {
       throw new Error(getErrorMessage(error));
     }
