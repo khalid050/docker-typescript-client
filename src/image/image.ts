@@ -1,7 +1,7 @@
 import { generateQueryParams, getErrorMessage } from "../util";
 import { requestDaemon } from "../http";
-import { Image as I } from "./imageT";
-import { Response } from "response";
+import { Image as I } from "../../types/image";
+import { Response } from "../../types/response";
 
 import fs from "fs";
 import tar from "tar-fs";

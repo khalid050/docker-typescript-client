@@ -1,4 +1,4 @@
-import { operations as Operations } from "./dockerSchema";
+import { operations as Operations } from "../dockerSchema";
 
 export type Actions = keyof Operations;
 type O<T extends Actions> = Operations[T];

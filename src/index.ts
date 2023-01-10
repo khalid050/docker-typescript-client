@@ -1,6 +1,6 @@
 import Container from "./container";
-import { Container as C } from "./container/containerT";
-import { Image as I } from "./image/imageT";
+import { Container as C } from "../types/container";
+import { Image as I } from "../types/image";
 import Image from "./image";
 import axios from "axios";
 

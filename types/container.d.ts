@@ -4,7 +4,7 @@ import {
   QueryParams,
   RequestOptions,
   DaemonResponse,
-} from "../../response";
+} from "./response";
 
 type ContainerIdOrName = number | string;
 

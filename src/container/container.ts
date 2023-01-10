@@ -1,7 +1,7 @@
 import { requestDaemon } from "../http";
-import { Container as C } from "./containerT";
+import { Container as C } from "../../types/container";
 import { getErrorMessage } from "../util";
-import { Response } from "../../response";
+import { Response } from "../../types/response";
 
 export const Container: C = {
   async create({

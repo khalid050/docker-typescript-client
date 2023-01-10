@@ -3,7 +3,7 @@ import {
   Actions,
   QueryParams,
   RequestOptions,
-} from "../../response";
+} from "./response";
 
 type DaemonResponse<T extends Actions> = Promise<
   SuccessResponse<T> extends string | number
