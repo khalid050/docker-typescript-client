@@ -1,5 +1,5 @@
 export const generateQueryParams = (
-  options: { [key: string]: any } | undefined
+  options: { [key: string]: any } | number | undefined
 ) => {
   if (!options || !Object.values(options).length) {
     return "";

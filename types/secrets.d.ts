@@ -26,8 +26,8 @@ type Delete = (id: string) => DaemonResponse<"SecretDelete">;
 type Update = (
   id: string,
   version: number,
-  options: RequestOptions<"SecretCreate">
-) => DaemonResponse<"SecretCreate">;
+  options?: RequestOptions<"SecretUpdate">
+) => DaemonResponse<"SecretUpdate">;
 
 export type Secrets = {
   list: List;
@@ -35,8 +35,4 @@ export type Secrets = {
   inspect: Inspect;
   delete: Delete;
   update: Update;
-};
-
-export type Response = {
-  [K in Actions]: SuccessResponse<K>;
 };
