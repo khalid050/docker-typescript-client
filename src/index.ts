@@ -1,7 +1,8 @@
 import Container from "./container";
+import Image from "./image";
+import Secrets from "./secrets";
 import { Container as C } from "../types/container";
 import { Image as I } from "../types/image";
-import Image from "./image";
 import axios from "axios";
 
 const DockerDefaults = {
@@ -28,4 +29,4 @@ class Docker {
 //testing
 (async function () {})();
 
-export { Docker, Container, Image };
+export { Docker, Container, Image, Secrets };
