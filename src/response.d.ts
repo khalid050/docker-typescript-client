@@ -14,7 +14,7 @@ export type Data<T extends Actions> = {
 }[StatusCodes<T>];
 
 // Limit success status codes for now
-type SuccessResponseData<T extends Actions> = {
+export type SuccessResponseData<T extends Actions> = {
   [SC in StatusCodes<T> as SC extends 200 | 201 | 204
     ? SC
     : never]: Responses<T>[SC] extends {

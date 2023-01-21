@@ -1,6 +1,5 @@
 import { generateQueryParams, getErrorMessage } from "../util";
 import { requestDaemon } from "../http";
-// import { Image as I } from "../../types/image";
 import {
   Response,
   QueryParams,

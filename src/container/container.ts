@@ -1,5 +1,4 @@
 import { requestDaemon } from "../http";
-// import { Container as C } from "../../types/container";
 import { getErrorMessage } from "../util";
 import {
   Response,
@@ -7,13 +6,6 @@ import {
   RequestOptions,
   DaemonResponse,
 } from "../response";
-// import {
-//   SuccessResponse,
-//   Actions,
-//   QueryParams,
-//   RequestOptions,
-//   DaemonResponse,
-// } from "./response";
 
 export const Container: Container = {
   async create({
@@ -242,9 +234,9 @@ export const Container: Container = {
   },
 };
 
-type ContainerIdOrName = number | string;
+export type ContainerIdOrName = number | string;
 
-type CreateContainer = (props: {
+export type CreateContainer = (props: {
   containerName?: string;
   defaultCommand: string[];
   platform?: string;
@@ -252,81 +244,81 @@ type CreateContainer = (props: {
   options?: Omit<RequestOptions<"ContainerCreate">, "Image" | "Cmd">;
 }) => DaemonResponse<"ContainerCreate">;
 
-type KillContainer = (
+export type KillContainer = (
   containerIdOrName: ContainerIdOrName,
   options?: QueryParams<"ContainerKill">
 ) => DaemonResponse<"ContainerKill">;
 
-type StartContainer = (
+export type StartContainer = (
   containerIdOrName: ContainerIdOrName,
   options: QueryParams<"ContainerStart">
 ) => DaemonResponse<"ContainerStart">;
 
-type StopContainer = (
+export type StopContainer = (
   containerIdOrName: ContainerIdOrName,
   options: QueryParams<"ContainerStop">
 ) => DaemonResponse<"ContainerStop">;
 
-type DeleteContainer = (
+export type DeleteContainer = (
   containerIdOrName: ContainerIdOrName
 ) => DaemonResponse<"ContainerDelete">;
 
-type RestartContainer = (
+export type RestartContainer = (
   containerIdOrName: ContainerIdOrName,
   options?: QueryParams<"ContainerRestart">
 ) => DaemonResponse<"ContainerRestart">;
 
-type InspectContainer = (
+export type InspectContainer = (
   containerIdOrName: ContainerIdOrName,
   options?: QueryParams<"ContainerInspect">
 ) => DaemonResponse<"ContainerInspect">;
 
-type ListContainers = (
+export type ListContainers = (
   options?: QueryParams<"ContainerList">
 ) => DaemonResponse<"ContainerList">;
 
-type PauseContainer = (
+export type PauseContainer = (
   containerIdOrName: ContainerIdOrName
 ) => DaemonResponse<"ContainerPause">;
 
-type ContainerLogs = (
+export type ContainerLogs = (
   containerIdOrName: ContainerIdOrName,
   options?: QueryParams<"ContainerLogs">
 ) => DaemonResponse<"ContainerLogs">;
 
-type UnpauseContainer = (
+export type UnpauseContainer = (
   containerIdOrName: ContainerIdOrName
 ) => DaemonResponse<"ContainerUnpause">;
 
-type ContainerFilesystemChanges = (
+export type ContainerFilesystemChanges = (
   containerIdOrName: ContainerIdOrName
 ) => DaemonResponse<"ContainerChanges">;
 
-type RenameContainer = (
+export type RenameContainer = (
   containerIdOrName: ContainerIdOrName,
   newContainerName: string
 ) => DaemonResponse<"ContainerRename">;
 
-type ContainerTop = (
+export type ContainerTop = (
   containerIdOrName: ContainerIdOrName,
   options?: QueryParams<"ContainerTop">
 ) => DaemonResponse<"ContainerTop">;
 
-type ContainerAttachWebsocket = (
+export type ContainerAttachWebsocket = (
   containerIdOrName: ContainerIdOrName,
   options?: QueryParams<"ContainerAttachWebsocket">
 ) => DaemonResponse<"ContainerAttachWebsocket">;
 
-type WaitForContainer = (
+export type WaitForContainer = (
   containerIdOrName: ContainerIdOrName,
   options?: QueryParams<"ContainerWait">
 ) => DaemonResponse<"ContainerWait">;
 
-type ContainerPrune = (
+export type ContainerPrune = (
   options?: QueryParams<"ContainerPrune">
 ) => DaemonResponse<"ContainerPrune">;
 
-type Container = {
+export type Container = {
   create: CreateContainer;
   list: ListContainers;
   delete: DeleteContainer;
