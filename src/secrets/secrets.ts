@@ -1,9 +1,9 @@
-import { requestDaemon } from "src/http";
-import { Secrets as S } from "../../types/secrets";
-import { Response } from "../../types/response";
-import { getErrorMessage } from "src/util";
+import { requestDaemon } from "../http";
+// import { Secrets as S } from "../../types/secrets";
+// import { Response } from "../../types/response";
+import { getErrorMessage } from "../util";
 
-export const Secrets: S = {
+export const Secrets: Secrets = {
   async list(options: {}) {
     try {
       const { data } = await requestDaemon<Response["SecretList"]>({
@@ -68,4 +68,44 @@ export const Secrets: S = {
       throw new Error(getErrorMessage(error));
     }
   },
+};
+
+import {
+  SuccessResponse,
+  Actions,
+  QueryParams,
+  RequestOptions,
+  Response
+} from "../response";
+
+type DaemonResponse<T extends Actions> = Promise<
+  SuccessResponse<T> extends string | number
+    ? { message: string | number }
+    : SuccessResponse<T>
+>;
+
+type List = (
+  options: QueryParams<"SecretList">
+) => DaemonResponse<"SecretList">;
+
+type Create = (
+  data: RequestOptions<"SecretCreate">
+) => DaemonResponse<"SecretCreate">;
+
+type Inspect = (id: string) => DaemonResponse<"SecretInspect">;
+
+type Delete = (id: string) => DaemonResponse<"SecretDelete">;
+
+type Update = (
+  id: string,
+  version: number,
+  options?: RequestOptions<"SecretUpdate">
+) => DaemonResponse<"SecretUpdate">;
+
+type Secrets = {
+  list: List;
+  create: Create;
+  inspect: Inspect;
+  delete: Delete;
+  update: Update;
 };

@@ -1,8 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Secrets = void 0;
-const http_1 = require("src/http");
-const util_1 = require("src/util");
+const http_1 = require("../http");
+// import { Secrets as S } from "../../types/secrets";
+// import { Response } from "../../types/response";
+const util_1 = require("../util");
 exports.Secrets = {
     async list(options) {
         try {

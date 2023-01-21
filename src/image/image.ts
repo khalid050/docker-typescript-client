@@ -1,14 +1,17 @@
 import { generateQueryParams, getErrorMessage } from "../util";
 import { requestDaemon } from "../http";
-import { Image as I } from "../../types/image";
-import { Response } from "../../types/response";
+// import { Image as I } from "../../types/image";
+import {
+  Response,
+  QueryParams,
+  DaemonResponse,
+} from "../response";
 
 import fs from "fs";
 import tar from "tar-fs";
 import http from "http";
 
-
-export const Image: I = {
+export const Image: Image = {
   async list(options = {}) {
     try {
       const { data } = await requestDaemon<Response["ImageList"]>({
@@ -150,4 +153,48 @@ export const Image: I = {
       throw new Error(getErrorMessage(error));
     }
   },
+};
+
+type List = (props?: QueryParams<"ImageList">) => DaemonResponse<"ImageList">;
+
+type Build = (
+  tarArchivePath: string,
+  options: QueryParams<"ImageBuild">
+) => DaemonResponse<"ImageBuild">;
+
+type Inspect = (imageIdOrName: string) => DaemonResponse<"ImageInspect">;
+
+type Remove = (
+  imageIdOrName: string,
+  options?: QueryParams<"ImageDelete">
+) => DaemonResponse<"ImageDelete">;
+
+type Tag = (
+  imageIdOrName: string,
+  options: QueryParams<"ImageTag">
+) => DaemonResponse<"ImageTag">;
+
+type History = (imageIdOrName: string) => DaemonResponse<"ImageHistory">;
+
+type DeleteBuilderCache = (options?: QueryParams<"BuildPrune">) => void;
+
+type Search = (
+  term: string,
+  options?: Omit<QueryParams<"ImageSearch">, "term">
+) => DaemonResponse<"ImageSearch">;
+
+type DeleteUnusedImages = (
+  options?: QueryParams<"ImagePrune">
+) => DaemonResponse<"ImagePrune">;
+
+type Image = {
+  list: List;
+  build: Build;
+  inspect: Inspect;
+  remove: Remove;
+  tag: Tag;
+  history: History;
+  deleteBuilderCache: DeleteBuilderCache;
+  search: Search;
+  deleteUnusedImages: DeleteUnusedImages;
 };

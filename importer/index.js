@@ -1,3 +1,4 @@
-const { Image } = require("../dist/src");
-require("../types/image");
-console.log(Image);
+const { Docker } = require("../dist/src");
+
+
+const { Image, Container } = new Docker();

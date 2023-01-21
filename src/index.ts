@@ -1,8 +1,8 @@
 import Container from "./container";
 import Image from "./image";
 import Secrets from "./secrets";
-import { Container as C } from "../types/container";
-import { Image as I } from "../types/image";
+// import { Container as C } from "../types/container";
+// import { Image as I } from "../types/image";
 import axios from "axios";
 
 const DockerDefaults = {
@@ -13,8 +13,8 @@ const DockerDefaults = {
 class Docker {
   url?: string;
   socketPath?: string;
-  Container: C;
-  Image: I;
+  Container: typeof Container;
+  Image: typeof Image;
 
   constructor({ url, socketPath }: { url?: string; socketPath?: string } = {}) {
     this.url = url || DockerDefaults.url;
