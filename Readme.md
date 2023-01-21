@@ -1,6 +1,14 @@
 <h2>Getting started</h2>
 
+
+```bash
+npm install @plswork/docker-typescript-client
+```
+
+
 ```javascript
+const { Docker } = require("@plswork/docker-typescript-client");
+
 const { Container, Image } = new Docker();
 /**
  *  Defaults: 
