@@ -1,3 +1,9 @@
+
+
+[![npm version](https://badge.fury.io/js/@plswork%2Fdocker-typescript-client.svg)](https://badge.fury.io/js/@plswork%2Fdocker-typescript-client)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 <h2>Getting started</h2>
 
 ```bash
