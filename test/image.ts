@@ -4,8 +4,8 @@ import { Docker } from "../src";
 
 test("Should build an Ubuntu Image", async () => {
   const { Image } = new Docker();
-  after(async () => await Image.remove(imageTag));
   const imageTag = "myubuntuimage";
+  after(async () => await Image.remove(imageTag));
   await Image.build(`${process.cwd()}/test/archive`, {
     t: imageTag,
   });
