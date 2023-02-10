@@ -1,6 +1,4 @@
 import { requestDaemon } from "../http";
-// import { Secrets as S } from "../../types/secrets";
-// import { Response } from "../../types/response";
 import { getErrorMessage } from "../util";
 
 export const Secrets: Secrets = {
