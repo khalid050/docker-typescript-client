@@ -2,7 +2,9 @@ import axios from "axios";
 
 import Container from "./container";
 import Image from "./image";
+import Networks from "./networks";
 import Secrets from "./secrets";
+import Exec from "./exec";
 
 const DockerDefaults = {
   url: "http://localhost/v1.41/",
@@ -12,7 +14,7 @@ const DockerDefaults = {
 class Docker {
   url?: string;
   socketPath?: string;
-  
+
   constructor({
     url = DockerDefaults.url,
     socketPath = DockerDefaults.socketPath,
@@ -25,9 +27,12 @@ class Docker {
 
   Container = Container;
   Image = Image;
+  Networks = Networks;
+  Secrets = Secrets;
+  Exec = Exec;
 }
 
 // testing
 (async function () {})();
 
-export { Docker, Container, Image, Secrets };
+export { Docker };
