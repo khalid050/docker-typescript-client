@@ -25,7 +25,7 @@ const { Container, Image } = new Docker({
 
 // examples
 await Image.build("path/to/dockerfile", {
-  t: myubuntuimage,
+  t: 'myubuntuimage',
 });
 
 const myContainer = await Container.create({
