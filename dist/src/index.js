@@ -29,4 +29,12 @@ class Docker {
 }
 exports.Docker = Docker;
 // testing
-(async function () { })();
+(async function () {
+    const { Image } = new Docker();
+    const imageTag = "myubuntuimage";
+    await Image.build(`${process.cwd()}/test/archive`, {
+        t: imageTag,
+    });
+    const myubuntuimage = await Image.inspect(imageTag);
+    console.log({ myubuntuimage });
+})();
